@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
+
 namespace TienXyLyDuLieu
 {
     public partial class Form_XuLyDuLieu : Form
@@ -27,7 +28,7 @@ namespace TienXyLyDuLieu
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
-            
+
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -37,7 +38,7 @@ namespace TienXyLyDuLieu
                 {
                     List<string> chuoi = new List<string>();
                     string[] line = reader.ReadLine().Split(',');
-                    for (int i = 0; i < line.Length;i++ )
+                    for (int i = 0; i < line.Length; i++)
                     {
                         chuoi.Add(line[i]);
                     }
@@ -45,27 +46,171 @@ namespace TienXyLyDuLieu
                 }
                 reader.Close();
             }
-            DuLieu();//Xuat du lieu
             ThongTin();
+            DuLieu();//Xuat du lieu                                  
+        }
+
+        private int soThuocTinh()
+        {
+            int tong = 0;
+            List<string> str = data.ElementAt(0);
+            tong = str.Count;
+            return tong;
         }
 
         private void ThongTin()
         {
+            dataGridView2.Visible = true;
             List<string> str = data.ElementAt(0);
             for (int i = 0; i < str.Count; i++)
-			{
-			    dataGridView2.Rows.Add(i+1,false,str.ElementAt(i));
-			}
+            {
+                dataGridView2.Rows.Add(i + 1, false, str.ElementAt(i));
+            }
+
         }
 
         private void DuLieu()
         {
-            for (int i = 1; i < data.LongCount(); i++)
+            int tongThuocTinh = soThuocTinh();
+            dataGridView1.ColumnCount = tongThuocTinh;
+            List<string> name = data.ElementAt(0);
+            for (int i = 0; i < tongThuocTinh; i++)
+            {
+                dataGridView1.Columns[i].Name = name[i].ToString();
+            }
+            data.RemoveAt(0);
+            dataGridView1.RowCount = data.Count;
+            for (int i = 0; i < data.Count; i++)
             {
                 List<string> str = data.ElementAt(i);
-                
-                dataGridView1.Rows.Add(str.ElementAt(0), str.ElementAt(1), str.ElementAt(2), str.ElementAt(3), str.ElementAt(4), str.ElementAt(5), str.ElementAt(6), str.ElementAt(7), str.ElementAt(8), str.ElementAt(9), str.ElementAt(10), str.ElementAt(11));
+                for (int j = 0; j < tongThuocTinh; j++)
+                {
+                    dataGridView1.Rows[i].Cells[j].Value = str.ElementAt(j);
+                }
             }
+        }
+
+        private float TrungBinh(int CotCanTinh)
+        {
+            int count = 0;
+            float tong = 0;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                float tem;
+                if (float.TryParse(dataGridView1.Rows[i].Cells[CotCanTinh].Value.ToString(), out tem))
+                {
+                    tong += tem;
+                    count++;
+                }
+            }
+
+            return tong / count;
+        }
+
+        private int TanXuat(string Nominal, int CotCanDem)
+        {
+            int count = 0;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[CotCanDem].Value.ToString() == Nominal)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private string TanXuatMax(int CotCanDem)
+        {
+            int max = 0;
+            string str = null;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[CotCanDem].Value.ToString() != "?")
+                {
+                    int tem = TanXuat(dataGridView1.Rows[i].Cells[CotCanDem].Value.ToString(), CotCanDem);
+                    if (tem > max)
+                    {
+                        max = tem;
+                        str = dataGridView1.Rows[i].Cells[CotCanDem].Value.ToString();
+                    }
+                }
+            }
+            return str;
+        }
+
+
+        private void Form_XuLyDuLieu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Form_XuLyDuLieu_Load(object sender, EventArgs e)
+        {
+            dataGridView2.Visible = false;
+        }
+
+        private void Numberic()
+        {
+            float tb = 0;
+            int tongThuocTinh = soThuocTinh();
+            for (int i = 0; i < tongThuocTinh; i++)//tach ham do tranh chap dau "?"
+            {
+                if (kiemtraNumberic(i))
+                {
+                    tb = TrungBinh(i);
+                    for (int j = 0; j < dataGridView1.RowCount; j++)
+                    {
+                        if (dataGridView1.Rows[j].Cells[i].Value.ToString() == "?")
+                        {
+                            dataGridView1.Rows[j].Cells[i].Value = string.Format("{0:#,0.#}", tb);
+                        }
+                    }                    
+                }                
+            }
+        }
+
+        private void Nominal_()
+        {
+            string str = null;
+            int tongThuocTinh = soThuocTinh();
+            for (int i = 0; i < tongThuocTinh; i++)//tach ham do tranh chap dau "?"
+            {
+                if (!kiemtraNumberic(i))
+                {
+                    str = TanXuatMax(i);
+                    for (int j = 0; j < dataGridView1.RowCount; j++)
+                    {
+                        if (dataGridView1.Rows[j].Cells[i].Value.ToString() == "?")
+                        {
+                            dataGridView1.Rows[j].Cells[i].Value = str;
+                        }
+                    }
+                }                
+            }
+        }
+
+        private bool kiemtraNumberic(int cotCanKiem)
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() != "?")
+                {
+                    float tem;
+                    if (float.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(), out tem))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void thựcHiệnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Numberic();
+            Nominal_();
+            
         }
     }
 }

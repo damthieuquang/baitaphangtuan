@@ -33,6 +33,7 @@
             this.chọnDữLiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lưuFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.điềnGiáTrịThiếuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thựcHiệnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiaGiỏToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiaTheoChiềuRộngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiềuSâuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,23 +42,12 @@
             this.zscoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cl_fixed_acidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_volatile_acidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_citric_acid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_residual_sugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_chlorides = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_free_sulfur_dioxide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_total_sulfur_dioxide = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_density = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_pH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_sulphates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_alcohol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_quality = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cl_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cl_checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cl_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_class = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -101,9 +91,18 @@
             // 
             // điềnGiáTrịThiếuToolStripMenuItem
             // 
+            this.điềnGiáTrịThiếuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thựcHiệnToolStripMenuItem});
             this.điềnGiáTrịThiếuToolStripMenuItem.Name = "điềnGiáTrịThiếuToolStripMenuItem";
             this.điềnGiáTrịThiếuToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
             this.điềnGiáTrịThiếuToolStripMenuItem.Text = "Điền giá trị thiếu";
+            // 
+            // thựcHiệnToolStripMenuItem
+            // 
+            this.thựcHiệnToolStripMenuItem.Name = "thựcHiệnToolStripMenuItem";
+            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.thựcHiệnToolStripMenuItem.Text = "Thực hiện";
+            this.thựcHiệnToolStripMenuItem.Click += new System.EventHandler(this.thựcHiệnToolStripMenuItem_Click);
             // 
             // chiaGiỏToolStripMenuItem
             // 
@@ -160,116 +159,20 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cl_fixed_acidity,
-            this.cl_volatile_acidity,
-            this.cl_citric_acid,
-            this.cl_residual_sugar,
-            this.cl_chlorides,
-            this.cl_free_sulfur_dioxide,
-            this.cl_total_sulfur_dioxide,
-            this.cl_density,
-            this.cl_pH,
-            this.cl_sulphates,
-            this.cl_alcohol,
-            this.cl_quality});
             this.dataGridView1.Location = new System.Drawing.Point(209, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(670, 472);
             this.dataGridView1.TabIndex = 1;
             // 
-            // cl_fixed_acidity
-            // 
-            this.cl_fixed_acidity.HeaderText = "fixed acidity";
-            this.cl_fixed_acidity.Name = "cl_fixed_acidity";
-            this.cl_fixed_acidity.ReadOnly = true;
-            this.cl_fixed_acidity.Width = 87;
-            // 
-            // cl_volatile_acidity
-            // 
-            this.cl_volatile_acidity.HeaderText = "volatile acidity";
-            this.cl_volatile_acidity.Name = "cl_volatile_acidity";
-            this.cl_volatile_acidity.ReadOnly = true;
-            this.cl_volatile_acidity.Width = 98;
-            // 
-            // cl_citric_acid
-            // 
-            this.cl_citric_acid.HeaderText = "citric acid";
-            this.cl_citric_acid.Name = "cl_citric_acid";
-            this.cl_citric_acid.ReadOnly = true;
-            this.cl_citric_acid.Width = 77;
-            // 
-            // cl_residual_sugar
-            // 
-            this.cl_residual_sugar.HeaderText = "residual sugar";
-            this.cl_residual_sugar.Name = "cl_residual_sugar";
-            this.cl_residual_sugar.ReadOnly = true;
-            this.cl_residual_sugar.Width = 97;
-            // 
-            // cl_chlorides
-            // 
-            this.cl_chlorides.HeaderText = "chlorides";
-            this.cl_chlorides.Name = "cl_chlorides";
-            this.cl_chlorides.ReadOnly = true;
-            this.cl_chlorides.Width = 74;
-            // 
-            // cl_free_sulfur_dioxide
-            // 
-            this.cl_free_sulfur_dioxide.HeaderText = "free sulfur dioxide";
-            this.cl_free_sulfur_dioxide.Name = "cl_free_sulfur_dioxide";
-            this.cl_free_sulfur_dioxide.ReadOnly = true;
-            this.cl_free_sulfur_dioxide.Width = 105;
-            // 
-            // cl_total_sulfur_dioxide
-            // 
-            this.cl_total_sulfur_dioxide.HeaderText = "total sulfur dioxide";
-            this.cl_total_sulfur_dioxide.Name = "cl_total_sulfur_dioxide";
-            this.cl_total_sulfur_dioxide.ReadOnly = true;
-            this.cl_total_sulfur_dioxide.Width = 106;
-            // 
-            // cl_density
-            // 
-            this.cl_density.HeaderText = "density";
-            this.cl_density.Name = "cl_density";
-            this.cl_density.ReadOnly = true;
-            this.cl_density.Width = 65;
-            // 
-            // cl_pH
-            // 
-            this.cl_pH.HeaderText = "pH";
-            this.cl_pH.Name = "cl_pH";
-            this.cl_pH.ReadOnly = true;
-            this.cl_pH.Width = 46;
-            // 
-            // cl_sulphates
-            // 
-            this.cl_sulphates.HeaderText = "sulphates";
-            this.cl_sulphates.Name = "cl_sulphates";
-            this.cl_sulphates.ReadOnly = true;
-            this.cl_sulphates.Width = 77;
-            // 
-            // cl_alcohol
-            // 
-            this.cl_alcohol.HeaderText = "alcohol";
-            this.cl_alcohol.Name = "cl_alcohol";
-            this.cl_alcohol.ReadOnly = true;
-            this.cl_alcohol.Width = 66;
-            // 
-            // cl_quality
-            // 
-            this.cl_quality.HeaderText = "quality";
-            this.cl_quality.Name = "cl_quality";
-            this.cl_quality.ReadOnly = true;
-            this.cl_quality.Width = 62;
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cl_stt,
-            this.cl_check,
-            this.cl_Name});
+            this.cl_checked,
+            this.cl_Name,
+            this.cl_class});
             this.dataGridView2.Location = new System.Drawing.Point(12, 27);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(191, 472);
@@ -282,21 +185,26 @@
             this.cl_stt.ReadOnly = true;
             this.cl_stt.Width = 25;
             // 
-            // cl_check
+            // cl_checked
             // 
-            this.cl_check.HeaderText = "";
-            this.cl_check.Name = "cl_check";
-            this.cl_check.ReadOnly = true;
-            this.cl_check.Width = 20;
+            this.cl_checked.HeaderText = "";
+            this.cl_checked.Name = "cl_checked";
+            this.cl_checked.ReadOnly = true;
+            this.cl_checked.Width = 25;
             // 
             // cl_Name
             // 
-            this.cl_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.cl_Name.HeaderText = "Name";
             this.cl_Name.Name = "cl_Name";
             this.cl_Name.ReadOnly = true;
-            this.cl_Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cl_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cl_Name.Width = 50;
+            // 
+            // cl_class
+            // 
+            this.cl_class.HeaderText = "Class";
+            this.cl_class.Name = "cl_class";
+            this.cl_class.ReadOnly = true;
+            this.cl_class.Width = 50;
             // 
             // Form_XuLyDuLieu
             // 
@@ -309,6 +217,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form_XuLyDuLieu";
             this.Text = "Xử lý dữ liệu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_XuLyDuLieu_FormClosing);
+            this.Load += new System.EventHandler(this.Form_XuLyDuLieu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -333,23 +243,13 @@
         private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lưuFileToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_fixed_acidity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_volatile_acidity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_citric_acid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_residual_sugar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_chlorides;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_free_sulfur_dioxide;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_total_sulfur_dioxide;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_density;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_pH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_sulphates;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_alcohol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_quality;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ToolStripMenuItem thựcHiệnToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_stt;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn cl_check;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cl_checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_class;
     }
 }
 
