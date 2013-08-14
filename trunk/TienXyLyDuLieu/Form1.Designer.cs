@@ -53,8 +53,14 @@
             this.cl_sulphates = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_alcohol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_quality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.cl_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cl_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -167,10 +173,10 @@
             this.cl_sulphates,
             this.cl_alcohol,
             this.cl_quality});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
+            this.dataGridView1.Location = new System.Drawing.Point(209, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(867, 472);
+            this.dataGridView1.Size = new System.Drawing.Size(670, 472);
             this.dataGridView1.TabIndex = 1;
             // 
             // cl_fixed_acidity
@@ -178,28 +184,28 @@
             this.cl_fixed_acidity.HeaderText = "fixed acidity";
             this.cl_fixed_acidity.Name = "cl_fixed_acidity";
             this.cl_fixed_acidity.ReadOnly = true;
-            this.cl_fixed_acidity.Width = 80;
+            this.cl_fixed_acidity.Width = 87;
             // 
             // cl_volatile_acidity
             // 
             this.cl_volatile_acidity.HeaderText = "volatile acidity";
             this.cl_volatile_acidity.Name = "cl_volatile_acidity";
             this.cl_volatile_acidity.ReadOnly = true;
-            this.cl_volatile_acidity.Width = 90;
+            this.cl_volatile_acidity.Width = 98;
             // 
             // cl_citric_acid
             // 
             this.cl_citric_acid.HeaderText = "citric acid";
             this.cl_citric_acid.Name = "cl_citric_acid";
             this.cl_citric_acid.ReadOnly = true;
-            this.cl_citric_acid.Width = 71;
+            this.cl_citric_acid.Width = 77;
             // 
             // cl_residual_sugar
             // 
             this.cl_residual_sugar.HeaderText = "residual sugar";
             this.cl_residual_sugar.Name = "cl_residual_sugar";
             this.cl_residual_sugar.ReadOnly = true;
-            this.cl_residual_sugar.Width = 89;
+            this.cl_residual_sugar.Width = 97;
             // 
             // cl_chlorides
             // 
@@ -257,11 +263,47 @@
             this.cl_quality.ReadOnly = true;
             this.cl_quality.Width = 62;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cl_stt,
+            this.cl_check,
+            this.cl_Name});
+            this.dataGridView2.Location = new System.Drawing.Point(12, 27);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(191, 472);
+            this.dataGridView2.TabIndex = 2;
+            // 
+            // cl_stt
+            // 
+            this.cl_stt.HeaderText = "STT";
+            this.cl_stt.Name = "cl_stt";
+            this.cl_stt.ReadOnly = true;
+            this.cl_stt.Width = 25;
+            // 
+            // cl_check
+            // 
+            this.cl_check.HeaderText = "";
+            this.cl_check.Name = "cl_check";
+            this.cl_check.ReadOnly = true;
+            this.cl_check.Width = 20;
+            // 
+            // cl_Name
+            // 
+            this.cl_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cl_Name.HeaderText = "Name";
+            this.cl_Name.Name = "cl_Name";
+            this.cl_Name.ReadOnly = true;
+            this.cl_Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cl_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Form_XuLyDuLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 511);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -270,6 +312,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,6 +345,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_sulphates;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_alcohol;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_quality;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_stt;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cl_check;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Name;
     }
 }
 

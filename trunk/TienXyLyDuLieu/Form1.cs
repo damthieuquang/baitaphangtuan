@@ -45,9 +45,25 @@ namespace TienXyLyDuLieu
                 }
                 reader.Close();
             }
-            for (int i = 1; i < data.LongCount() ; i++)
+            DuLieu();//Xuat du lieu
+            ThongTin();
+        }
+
+        private void ThongTin()
+        {
+            List<string> str = data.ElementAt(0);
+            for (int i = 0; i < str.Count; i++)
+			{
+			    dataGridView2.Rows.Add(i+1,false,str.ElementAt(i));
+			}
+        }
+
+        private void DuLieu()
+        {
+            for (int i = 1; i < data.LongCount(); i++)
             {
                 List<string> str = data.ElementAt(i);
+                
                 dataGridView1.Rows.Add(str.ElementAt(0), str.ElementAt(1), str.ElementAt(2), str.ElementAt(3), str.ElementAt(4), str.ElementAt(5), str.ElementAt(6), str.ElementAt(7), str.ElementAt(8), str.ElementAt(9), str.ElementAt(10), str.ElementAt(11));
             }
         }
