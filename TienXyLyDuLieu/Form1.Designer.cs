@@ -42,7 +42,6 @@
             this.zscoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cl_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -79,15 +78,16 @@
             // chọnDữLiệuToolStripMenuItem
             // 
             this.chọnDữLiệuToolStripMenuItem.Name = "chọnDữLiệuToolStripMenuItem";
-            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chọnDữLiệuToolStripMenuItem.Text = "Chọn dữ liệu";
             this.chọnDữLiệuToolStripMenuItem.Click += new System.EventHandler(this.chọnDữLiệuToolStripMenuItem_Click);
             // 
             // lưuFileToolStripMenuItem
             // 
             this.lưuFileToolStripMenuItem.Name = "lưuFileToolStripMenuItem";
-            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.lưuFileToolStripMenuItem.Text = "Lưu file";
+            this.lưuFileToolStripMenuItem.Click += new System.EventHandler(this.lưuFileToolStripMenuItem_Click);
             // 
             // điềnGiáTrịThiếuToolStripMenuItem
             // 
@@ -100,7 +100,7 @@
             // thựcHiệnToolStripMenuItem
             // 
             this.thựcHiệnToolStripMenuItem.Name = "thựcHiệnToolStripMenuItem";
-            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.thựcHiệnToolStripMenuItem.Text = "Thực hiện";
             this.thựcHiệnToolStripMenuItem.Click += new System.EventHandler(this.thựcHiệnToolStripMenuItem_Click);
             // 
@@ -243,7 +243,6 @@
         private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lưuFileToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ToolStripMenuItem thựcHiệnToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_stt;

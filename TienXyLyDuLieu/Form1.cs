@@ -14,6 +14,7 @@ namespace TienXyLyDuLieu
     public partial class Form_XuLyDuLieu : Form
     {
         private List<List<string>> data = new List<List<string>>();
+        private int tongThuocTinh = 0;
         public Form_XuLyDuLieu()
         {
             InitializeComponent();
@@ -28,7 +29,6 @@ namespace TienXyLyDuLieu
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
-
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -45,9 +45,9 @@ namespace TienXyLyDuLieu
                     data.Add(chuoi);
                 }
                 reader.Close();
-            }
-            ThongTin();
-            DuLieu();//Xuat du lieu                                  
+                ThongTin();
+                DuLieu();//Xuat du lieu
+            }                                             
         }
 
         private int soThuocTinh()
@@ -71,7 +71,7 @@ namespace TienXyLyDuLieu
 
         private void DuLieu()
         {
-            int tongThuocTinh = soThuocTinh();
+            tongThuocTinh = soThuocTinh();
             dataGridView1.ColumnCount = tongThuocTinh;
             List<string> name = data.ElementAt(0);
             for (int i = 0; i < tongThuocTinh; i++)
@@ -153,7 +153,7 @@ namespace TienXyLyDuLieu
         private void Numberic()
         {
             float tb = 0;
-            int tongThuocTinh = soThuocTinh();
+            
             for (int i = 0; i < tongThuocTinh; i++)//tach ham do tranh chap dau "?"
             {
                 if (kiemtraNumberic(i))
@@ -173,7 +173,7 @@ namespace TienXyLyDuLieu
         private void Nominal_()
         {
             string str = null;
-            int tongThuocTinh = soThuocTinh();
+            
             for (int i = 0; i < tongThuocTinh; i++)//tach ham do tranh chap dau "?"
             {
                 if (!kiemtraNumberic(i))
@@ -211,6 +211,39 @@ namespace TienXyLyDuLieu
             Numberic();
             Nominal_();
             
+        }
+
+        private void lưuFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount == 0)
+            {
+                MessageBox.Show("Chưa có nội dung");
+                return;
+            }
+            SaveFileDialog sdl = new SaveFileDialog();
+            sdl.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
+            string tem = null;
+
+            if (sdl.ShowDialog() == DialogResult.OK)
+            {
+                string path = sdl.FileName;
+                StreamWriter sw = new StreamWriter(path);
+                for (int j = 0; j < tongThuocTinh; j++)
+                {
+                    tem = dataGridView1.Columns[j].HeaderText;
+                    sw.Write(tem + ",");
+                }
+                sw.WriteLine();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {                    
+                    for (int j = 0; j < tongThuocTinh; j++)
+                    {
+                        tem = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        sw.Write(tem+",");
+                    }
+                    sw.WriteLine();
+                }
+            }
         }
     }
 }
