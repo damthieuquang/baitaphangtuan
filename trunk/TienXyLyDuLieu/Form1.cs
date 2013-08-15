@@ -25,7 +25,7 @@ namespace TienXyLyDuLieu
 
         }
 
-        private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)// Doc file
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
@@ -50,7 +50,7 @@ namespace TienXyLyDuLieu
             }                                             
         }
 
-        private int soThuocTinh()
+        private int soThuocTinh()//Cho biết tổng số thuộc tính của dữ liệu vào
         {
             int tong = 0;
             List<string> str = data.ElementAt(0);
@@ -58,18 +58,18 @@ namespace TienXyLyDuLieu
             return tong;
         }
 
-        private void ThongTin()
-        {
+        private void ThongTin()// Dua thông tin tổng quan về thuộc tính và kiểu của nó (num or nom)
+        {            
             dataGridView2.Visible = true;
             List<string> str = data.ElementAt(0);
             for (int i = 0; i < str.Count; i++)
             {
                 dataGridView2.Rows.Add(i + 1, false, str.ElementAt(i));
             }
-
+            
         }
 
-        private void DuLieu()
+        private void DuLieu()// Show dữ liệu vào datagridview
         {
             tongThuocTinh = soThuocTinh();
             dataGridView1.ColumnCount = tongThuocTinh;
@@ -90,7 +90,7 @@ namespace TienXyLyDuLieu
             }
         }
 
-        private float TrungBinh(int CotCanTinh)
+        private float TrungBinh(int CotCanTinh)// Tính giá trị trung bình của cột được chỉ định
         {
             int count = 0;
             float tong = 0;
@@ -107,7 +107,7 @@ namespace TienXyLyDuLieu
             return tong / count;
         }
 
-        private int TanXuat(string Nominal, int CotCanDem)
+        private int TanXuat(string Nominal, int CotCanDem)// Tính tuần suất
         {
             int count = 0;
             for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -120,7 +120,7 @@ namespace TienXyLyDuLieu
             return count;
         }
 
-        private string TanXuatMax(int CotCanDem)
+        private string TanXuatMax(int CotCanDem)// Tìm tần xuất lớn nhất
         {
             int max = 0;
             string str = null;
@@ -147,10 +147,10 @@ namespace TienXyLyDuLieu
 
         private void Form_XuLyDuLieu_Load(object sender, EventArgs e)
         {
-            dataGridView2.Visible = false;
+            dataGridView2.Visible = false;// An datagridview
         }
 
-        private void Numberic()
+        private void Numberic()//Dien du lieu thieu
         {
             float tb = 0;
             
@@ -170,7 +170,7 @@ namespace TienXyLyDuLieu
             }
         }
 
-        private void Nominal_()
+        private void Nominal_()//Dien du lieu thieu
         {
             string str = null;
             
@@ -190,7 +190,7 @@ namespace TienXyLyDuLieu
             }
         }
 
-        private bool kiemtraNumberic(int cotCanKiem)
+        private bool kiemtraNumberic(int cotCanKiem)// Kiểm tra có phải Numberic? ngược lại Nominal
         {
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
@@ -213,7 +213,7 @@ namespace TienXyLyDuLieu
             
         }
 
-        private void lưuFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void lưuFileToolStripMenuItem_Click(object sender, EventArgs e)//Lưu file
         {
             if (dataGridView1.RowCount == 0)
             {
