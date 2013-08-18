@@ -40,6 +40,7 @@ namespace TienXyLyDuLieu
         }
         private void chiaTheoChiềuRộngToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //dataGridView_ChoSanPham.Rows[i].Cells[clCheck.Index].Value.ToString() == "True"
             //nhan gia tri N-gio do nguoi dung nhap
             //sort tang dan theo ThuocTinh can chia gio
             //lay (max-min)/N de lay khoang
@@ -336,6 +337,70 @@ namespace TienXyLyDuLieu
             return false;
         }
 
+        private float timMin(int cotCanKiem)
+        {
+            float flag = float.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
+            if (kiemtraNumberic(cotCanKiem))
+            {
+                float temp = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) < flag)
+                    {
+                        flag = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+
+                    }
+                }
+            }
+            else
+            {
+                flag = -1;
+            }
+            MessageBox.Show("min: " + flag.ToString());
+            return flag;
+        }
+
+        private float timMax(int cotCanKiem)
+        {
+            float flag = float.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
+            if (kiemtraNumberic(cotCanKiem))
+            {
+                float temp = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) > flag)
+                    {
+                        flag = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+
+                    }
+                }
+            }
+            else
+            {
+                flag = -1;
+            }
+            MessageBox.Show("max: " + flag.ToString());
+            return flag;
+        }
+
+        private void chuanHoaMinMax(int cotCanKiem)
+        {
+            //ktra truoc: neu la numeric voi vao ham nay
+            //tao datagridview3 duoi datagridview1
+            float v =0;
+            float kq = 0;
+            float min = timMin(cotCanKiem);
+            float max = timMax(cotCanKiem);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                v = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                kq = (v - min) * (1 - 0) / (max - min) + 0;
+                //ghi vao datagridview3
+                MessageBox.Show(kq.ToString());
+            }
+           // MessageBox.Show("minmax: " + (float.Parse(dataGridView1.Rows[2].Cells[cotCanKiem].Value.ToString())).ToString()+" "+ min.ToString() +" "+ (max-min).ToString());
+        }
+
         private void thựcHiệnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Numberic();
@@ -390,5 +455,12 @@ namespace TienXyLyDuLieu
             }
             e.Handled = true;
         }
+
+        private void minmaxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chuanHoaMinMax(0);
+        }
+
+        
     }
 }
