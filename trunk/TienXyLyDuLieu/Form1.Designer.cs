@@ -78,14 +78,14 @@
             // chọnDữLiệuToolStripMenuItem
             // 
             this.chọnDữLiệuToolStripMenuItem.Name = "chọnDữLiệuToolStripMenuItem";
-            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.chọnDữLiệuToolStripMenuItem.Text = "Chọn dữ liệu";
             this.chọnDữLiệuToolStripMenuItem.Click += new System.EventHandler(this.chọnDữLiệuToolStripMenuItem_Click);
             // 
             // lưuFileToolStripMenuItem
             // 
             this.lưuFileToolStripMenuItem.Name = "lưuFileToolStripMenuItem";
-            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.lưuFileToolStripMenuItem.Text = "Lưu file";
             this.lưuFileToolStripMenuItem.Click += new System.EventHandler(this.lưuFileToolStripMenuItem_Click);
             // 
@@ -138,13 +138,14 @@
             // minmaxToolStripMenuItem
             // 
             this.minmaxToolStripMenuItem.Name = "minmaxToolStripMenuItem";
-            this.minmaxToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.minmaxToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.minmaxToolStripMenuItem.Text = "Min-max";
+            this.minmaxToolStripMenuItem.Click += new System.EventHandler(this.minmaxToolStripMenuItem_Click);
             // 
             // zscoreToolStripMenuItem
             // 
             this.zscoreToolStripMenuItem.Name = "zscoreToolStripMenuItem";
-            this.zscoreToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.zscoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zscoreToolStripMenuItem.Text = "Z-score";
             // 
             // thoátToolStripMenuItem
