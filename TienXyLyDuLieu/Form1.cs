@@ -385,18 +385,31 @@ namespace TienXyLyDuLieu
 
         private void chuanHoaMinMax(int cotCanKiem)
         {
+            //Chuan hoa ve [0;1]
             //ktra truoc: neu la numeric voi vao ham nay
             //tao datagridview3 duoi datagridview1
-            float v =0;
+            if (kiemtraNumberic(cotCanKiem) != true)
+            {
+                MessageBox.Show("Thuoc tinh nay la Nominal.");
+                return;
+            }
+            float v = 0;
             float kq = 0;
             float min = timMin(cotCanKiem);
             float max = timMax(cotCanKiem);
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                v = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
-                kq = (v - min) * (1 - 0) / (max - min) + 0;
-                //ghi vao datagridview3
-                MessageBox.Show(kq.ToString());
+                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() != "?")
+                {
+                    v = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                    kq = (v - min) * (1 - 0) / (max - min) + 0;
+                    //ghi vao datagridview1
+                    //MessageBox.Show(kq.ToString());
+                    dataGridView1.Rows[i].Cells[cotCanKiem].Value = kq;
+                    //MessageBox.Show(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                }
+
+
             }
            // MessageBox.Show("minmax: " + (float.Parse(dataGridView1.Rows[2].Cells[cotCanKiem].Value.ToString())).ToString()+" "+ min.ToString() +" "+ (max-min).ToString());
         }
@@ -458,7 +471,9 @@ namespace TienXyLyDuLieu
 
         private void minmaxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            chuanHoaMinMax(0);
+            int Index = dataGridView1.CurrentCell.OwningColumn.Index;
+            MessageBox.Show(Index.ToString());
+            chuanHoaMinMax(Index);
         }
 
         
