@@ -18,10 +18,140 @@ namespace TienXyLyDuLieu
         public Form_XuLyDuLieu()
         {
             InitializeComponent();
+           
         }
-
+        public List<bool> isNumeric()
+        {
+            List<bool> listNumeric = new List<bool>();
+            float temp;
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            {
+                if (float.TryParse(dataGridView1.Rows[1].Cells[i].Value.ToString(), out  temp))
+                {
+                    listNumeric.Add(true);
+                }
+                else
+                {
+                    listNumeric.Add(false);
+                }
+            }
+            
+            return listNumeric;
+        }
         private void chiaTheoChiềuRộngToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //nhan gia tri N-gio do nguoi dung nhap
+            //sort tang dan theo ThuocTinh can chia gio
+            //lay (max-min)/N de lay khoang
+            //=> Tim gio:
+            //[min + (max-min)*i/N,min + (max-min)*(i+1)/N) i:0->N-1;min + (max-min)*(i+1)/N < max
+            //[min + (max-min)*i/N,max) i:0->N-1;min + (max-min)*(i+1)/N > max
+            //Tinh gia tri trung binh cua tung thuoc tinh
+            //DataGridViewColumn col = dataGridView1.SortedColumn;
+            //ListSortDirection direction = ListSortDirection.Ascending;
+            //dataGridView1.Sort(col, direction);
+            //MessageBox.Show("hehe");
+            /*DataGridViewColumn newColumn =
+        dataGridView1.Columns.GetColumnCount(
+        DataGridViewElementStates.Selected) == 1 ?
+        dataGridView1.SelectedColumns[0] : null;
+
+            DataGridViewColumn oldColumn = dataGridView1.SortedColumn;
+            ListSortDirection direction;
+
+            // If oldColumn is null, then the DataGridView is not currently sorted. 
+            if (oldColumn != null)
+            {
+                // Sort the same column again, reversing the SortOrder. 
+                if (oldColumn == newColumn &&
+                    dataGridView1.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    // Sort a new column and remove the old SortGlyph.
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+
+            // If no column has been selected, display an error dialog  box. 
+            if (newColumn == null)
+            {
+                MessageBox.Show("Select a single column and try again.",
+                    "Error: Invalid Selection", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                dataGridView1.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
+            }*/
+            //dataGridView1.Sort(dataGridView1.Columns["cl_residual_sugar"], ListSortDirection.Ascending);
+            //DataGridViewTextBoxColumn textboxColumn = new DataGridViewTextBoxColumn();
+            //textboxColumn.ValueType= typeof(string);
+            //string a = "1";
+            //string b = "2.3";
+            //string c = "3";
+            //string d = "9.1";
+            //string f = "10";
+            //int kq = b.CompareTo(f);
+            //MessageBox.Show(kq.ToString());
+
+            List<bool> list = isNumeric();
+            for (int j = 0; j < 1; j++)
+            {
+                //MessageBox.Show(list[j].ToString());
+                //NEU LA NUMERIC THI SORT THEO INT
+                if (list[j] == false)
+                {
+                    //MessageBox.Show(list[j].ToString());
+                    //dataGridView1.Columns[j].ValueType = typeof(float);
+                    dataGridView1.Sort(dataGridView1.Columns[j], ListSortDirection.Ascending);
+                    
+                    /*
+                     * COI NHU SORT XONG
+                     */
+                    //float dorong = (float)(dataGridView1.Rows[0].Cells[j].Value) - dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j].Value) / 2;
+                }
+                else
+                {
+                    //NEU LA NOMINAL THI SORT THEO STRING
+                   // SortNumeric(j);
+                }
+                
+            }
+           // dataGridView1.SortCompare += new DataGridViewSortCompareEventHandler(
+           //this.dataGridView1_SortCompare);
+           // Controls.Add(this.dataGridView1);
+            
+            
+            
+        }
+
+        public void SortNumeric(int x)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                for (int j = i + 1; j < dataGridView1.Rows.Count; j++)
+                {
+                    if (dataGridView1.Rows[i].Cells[x].Value.ToString().CompareTo(dataGridView1.Rows[j].Cells[x].Value.ToString()) > 0)
+                    {
+                       
+                        //row = dataGridView1.Rows[i];
+                        //dataGridView1.Rows[i].SetValues = dataGridView1.Rows[j];
+                        //dataGridView1.Rows[j] = row;
+                    }
+                }
+            }
 
         }
 
@@ -244,6 +374,21 @@ namespace TienXyLyDuLieu
                     sw.WriteLine();
                 }
             }
+        }
+
+        private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            e.SortResult = System.String.Compare(
+            e.CellValue1.ToString(), e.CellValue2.ToString());
+
+            // If the cells are equal, sort based on the ID column. 
+            if (e.SortResult == 0 && e.Column.Name != "cl_residual_sugar")
+            {
+                e.SortResult = System.String.Compare(
+                    dataGridView1.Rows[e.RowIndex1].Cells["cl_residual_sugar"].Value.ToString(),
+                    dataGridView1.Rows[e.RowIndex2].Cells["cl_residual_sugar"].Value.ToString());
+            }
+            e.Handled = true;
         }
     }
 }
