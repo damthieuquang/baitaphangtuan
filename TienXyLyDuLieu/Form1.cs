@@ -439,7 +439,11 @@ namespace TienXyLyDuLieu
                 for (int j = 0; j < tongThuocTinh; j++)
                 {
                     tem = dataGridView1.Columns[j].HeaderText;
-                    sw.Write(tem + ",");
+                    sw.Write(tem);
+                    if (j != tongThuocTinh - 1)
+                    {
+                        sw.Write(",");
+                    }
                 }
                 sw.WriteLine();
                 for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -447,10 +451,15 @@ namespace TienXyLyDuLieu
                     for (int j = 0; j < tongThuocTinh; j++)
                     {
                         tem = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                        sw.Write(tem+",");
+                        sw.Write(tem);
+                        if (j != tongThuocTinh - 1)
+                        {
+                            sw.Write(",");
+                        }
                     }
                     sw.WriteLine();
                 }
+                MessageBox.Show("File lưu thành công!");
             }
         }
 
