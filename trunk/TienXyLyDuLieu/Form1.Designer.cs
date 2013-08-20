@@ -46,7 +46,7 @@
             this.cl_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cl_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_Bin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -78,14 +78,14 @@
             // chọnDữLiệuToolStripMenuItem
             // 
             this.chọnDữLiệuToolStripMenuItem.Name = "chọnDữLiệuToolStripMenuItem";
-            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chọnDữLiệuToolStripMenuItem.Text = "Chọn dữ liệu";
             this.chọnDữLiệuToolStripMenuItem.Click += new System.EventHandler(this.chọnDữLiệuToolStripMenuItem_Click);
             // 
             // lưuFileToolStripMenuItem
             // 
             this.lưuFileToolStripMenuItem.Name = "lưuFileToolStripMenuItem";
-            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.lưuFileToolStripMenuItem.Text = "Lưu file";
             this.lưuFileToolStripMenuItem.Click += new System.EventHandler(this.lưuFileToolStripMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             // thựcHiệnToolStripMenuItem
             // 
             this.thựcHiệnToolStripMenuItem.Name = "thựcHiệnToolStripMenuItem";
-            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.thựcHiệnToolStripMenuItem.Text = "Thực hiện";
             this.thựcHiệnToolStripMenuItem.Click += new System.EventHandler(this.thựcHiệnToolStripMenuItem_Click);
             // 
@@ -116,14 +116,14 @@
             // chiaTheoChiềuRộngToolStripMenuItem
             // 
             this.chiaTheoChiềuRộngToolStripMenuItem.Name = "chiaTheoChiềuRộngToolStripMenuItem";
-            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chiaTheoChiềuRộngToolStripMenuItem.Text = "Chiều rộng";
             this.chiaTheoChiềuRộngToolStripMenuItem.Click += new System.EventHandler(this.chiaTheoChiềuRộngToolStripMenuItem_Click);
             // 
             // chiềuSâuToolStripMenuItem
             // 
             this.chiềuSâuToolStripMenuItem.Name = "chiềuSâuToolStripMenuItem";
-            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chiềuSâuToolStripMenuItem.Text = "Chiều sâu";
             // 
             // chuẩnHóaToolStripMenuItem
@@ -173,7 +173,7 @@
             this.cl_stt,
             this.cl_checked,
             this.cl_Name,
-            this.cl_class});
+            this.cl_Bin});
             this.dataGridView2.Location = new System.Drawing.Point(12, 27);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(191, 472);
@@ -190,7 +190,6 @@
             // 
             this.cl_checked.HeaderText = "";
             this.cl_checked.Name = "cl_checked";
-            this.cl_checked.ReadOnly = true;
             this.cl_checked.Width = 25;
             // 
             // cl_Name
@@ -200,12 +199,11 @@
             this.cl_Name.ReadOnly = true;
             this.cl_Name.Width = 50;
             // 
-            // cl_class
+            // cl_Bin
             // 
-            this.cl_class.HeaderText = "Class";
-            this.cl_class.Name = "cl_class";
-            this.cl_class.ReadOnly = true;
-            this.cl_class.Width = 50;
+            this.cl_Bin.HeaderText = "Bin";
+            this.cl_Bin.Name = "cl_Bin";
+            this.cl_Bin.Width = 50;
             // 
             // Form_XuLyDuLieu
             // 
@@ -249,7 +247,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_stt;
         private System.Windows.Forms.DataGridViewCheckBoxColumn cl_checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_class;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Bin;
     }
 }
 
