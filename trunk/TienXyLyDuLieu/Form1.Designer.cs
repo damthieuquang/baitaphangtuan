@@ -78,14 +78,14 @@
             // chọnDữLiệuToolStripMenuItem
             // 
             this.chọnDữLiệuToolStripMenuItem.Name = "chọnDữLiệuToolStripMenuItem";
-            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chọnDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.chọnDữLiệuToolStripMenuItem.Text = "Chọn dữ liệu";
             this.chọnDữLiệuToolStripMenuItem.Click += new System.EventHandler(this.chọnDữLiệuToolStripMenuItem_Click);
             // 
             // lưuFileToolStripMenuItem
             // 
             this.lưuFileToolStripMenuItem.Name = "lưuFileToolStripMenuItem";
-            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.lưuFileToolStripMenuItem.Text = "Lưu file";
             this.lưuFileToolStripMenuItem.Click += new System.EventHandler(this.lưuFileToolStripMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             // thựcHiệnToolStripMenuItem
             // 
             this.thựcHiệnToolStripMenuItem.Name = "thựcHiệnToolStripMenuItem";
-            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.thựcHiệnToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.thựcHiệnToolStripMenuItem.Text = "Thực hiện";
             this.thựcHiệnToolStripMenuItem.Click += new System.EventHandler(this.thựcHiệnToolStripMenuItem_Click);
             // 
@@ -116,14 +116,14 @@
             // chiaTheoChiềuRộngToolStripMenuItem
             // 
             this.chiaTheoChiềuRộngToolStripMenuItem.Name = "chiaTheoChiềuRộngToolStripMenuItem";
-            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.chiaTheoChiềuRộngToolStripMenuItem.Text = "Chiều rộng";
             this.chiaTheoChiềuRộngToolStripMenuItem.Click += new System.EventHandler(this.chiaTheoChiềuRộngToolStripMenuItem_Click);
             // 
             // chiềuSâuToolStripMenuItem
             // 
             this.chiềuSâuToolStripMenuItem.Name = "chiềuSâuToolStripMenuItem";
-            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.chiềuSâuToolStripMenuItem.Text = "Chiều sâu";
             // 
             // chuẩnHóaToolStripMenuItem
@@ -138,15 +138,16 @@
             // minmaxToolStripMenuItem
             // 
             this.minmaxToolStripMenuItem.Name = "minmaxToolStripMenuItem";
-            this.minmaxToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minmaxToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.minmaxToolStripMenuItem.Text = "Min-max";
             this.minmaxToolStripMenuItem.Click += new System.EventHandler(this.minmaxToolStripMenuItem_Click);
             // 
             // zscoreToolStripMenuItem
             // 
             this.zscoreToolStripMenuItem.Name = "zscoreToolStripMenuItem";
-            this.zscoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zscoreToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.zscoreToolStripMenuItem.Text = "Z-score";
+            this.zscoreToolStripMenuItem.Click += new System.EventHandler(this.zscoreToolStripMenuItem_Click);
             // 
             // thoátToolStripMenuItem
             // 
@@ -168,6 +169,10 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cl_stt,
@@ -188,6 +193,7 @@
             // 
             // cl_checked
             // 
+            this.cl_checked.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.cl_checked.HeaderText = "";
             this.cl_checked.Name = "cl_checked";
             this.cl_checked.Width = 25;

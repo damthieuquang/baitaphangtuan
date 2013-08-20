@@ -10,7 +10,7 @@ using System.IO;
 
 
 namespace TienXyLyDuLieu
-{
+{   
     public partial class Form_XuLyDuLieu : Form
     {
         private List<List<string>> data = new List<List<string>>();
@@ -38,123 +38,162 @@ namespace TienXyLyDuLieu
             
             return listNumeric;
         }
+        private void resetChecked()
+        {
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                dataGridView2.Rows[i].Cells["cl_checked"].Value = false;
+                dataGridView2.Rows[i].Cells["cl_Bin"].Value = "";
+            }
+        }
+
         private void chiaTheoChiềuRộngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //dataGridView_ChoSanPham.Rows[i].Cells[clCheck.Index].Value.ToString() == "True"
-            //nhan gia tri N-gio do nguoi dung nhap
-            //sort tang dan theo ThuocTinh can chia gio
-            //lay (max-min)/N de lay khoang
+            //nhan gia tri N-gio do nguoi dung nhap           
+            //lay (max-min)/N de lay dorong cua khoang
             //=> Tim gio:
             //[min + (max-min)*i/N,min + (max-min)*(i+1)/N) i:0->N-1;min + (max-min)*(i+1)/N < max
             //[min + (max-min)*i/N,max) i:0->N-1;min + (max-min)*(i+1)/N > max
             //Tinh gia tri trung binh cua tung thuoc tinh
-            //DataGridViewColumn col = dataGridView1.SortedColumn;
-            //ListSortDirection direction = ListSortDirection.Ascending;
-            //dataGridView1.Sort(col, direction);
-            //MessageBox.Show("hehe");
-            /*DataGridViewColumn newColumn =
-        dataGridView1.Columns.GetColumnCount(
-        DataGridViewElementStates.Selected) == 1 ?
-        dataGridView1.SelectedColumns[0] : null;
+            //bins: [min,max),count, gtriTB
 
-            DataGridViewColumn oldColumn = dataGridView1.SortedColumn;
-            ListSortDirection direction;
+            //Class bins{min, max,thanhphan,gtriTB}
+            //list bins
 
-            // If oldColumn is null, then the DataGridView is not currently sorted. 
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder. 
-                if (oldColumn == newColumn &&
-                    dataGridView1.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-
-            // If no column has been selected, display an error dialog  box. 
-            if (newColumn == null)
-            {
-                MessageBox.Show("Select a single column and try again.",
-                    "Error: Invalid Selection", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            else
-            {
-                dataGridView1.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-            }*/
-            //dataGridView1.Sort(dataGridView1.Columns["cl_residual_sugar"], ListSortDirection.Ascending);
-            //DataGridViewTextBoxColumn textboxColumn = new DataGridViewTextBoxColumn();
-            //textboxColumn.ValueType= typeof(string);
-            //string a = "1";
-            //string b = "2.3";
-            //string c = "3";
-            //string d = "9.1";
-            //string f = "10";
-            //int kq = b.CompareTo(f);
-            //MessageBox.Show(kq.ToString());
-
-            List<bool> list = isNumeric();
-            for (int j = 0; j < 1; j++)
-            {
-                //MessageBox.Show(list[j].ToString());
-                //NEU LA NUMERIC THI SORT THEO INT
-                if (list[j] == false)
-                {
-                    //MessageBox.Show(list[j].ToString());
-                    //dataGridView1.Columns[j].ValueType = typeof(float);
-                    dataGridView1.Sort(dataGridView1.Columns[j], ListSortDirection.Ascending);
-                    
-                    /*
-                     * COI NHU SORT XONG
-                     */
-                    //float dorong = (float)(dataGridView1.Rows[0].Cells[j].Value) - dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j].Value) / 2;
-                }
-                else
-                {
-                    //NEU LA NOMINAL THI SORT THEO STRING
-                   // SortNumeric(j);
-                }
+            int N = 0;//N la so gio nguoi dung NHAP
+            for (int i = 0; i < dataGridView2.RowCount; i++)
+            { 
+                //khong tinh cot cuoi cung
                 
-            }
-           // dataGridView1.SortCompare += new DataGridViewSortCompareEventHandler(
-           //this.dataGridView1_SortCompare);
-           // Controls.Add(this.dataGridView1);
-            
-            
-            
-        }
-
-        public void SortNumeric(int x)
-        {
-            DataGridViewRow row = new DataGridViewRow();
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
-            {
-                for (int j = i + 1; j < dataGridView1.Rows.Count; j++)
+                if (dataGridView2.Rows[i].Cells[cl_checked.Index].Value.ToString() == "True")
                 {
-                    if (dataGridView1.Rows[i].Cells[x].Value.ToString().CompareTo(dataGridView1.Rows[j].Cells[x].Value.ToString()) > 0)
+                    if (dataGridView2.Rows[i].Cells["cl_Bin"].Value == null)
                     {
-                       
-                        //row = dataGridView1.Rows[i];
-                        //dataGridView1.Rows[i].SetValues = dataGridView1.Rows[j];
-                        //dataGridView1.Rows[j] = row;
+                        MessageBox.Show("Vui long chon thuoc tinh va dien so gio ban muon chia o khung ben trai.\n Sau do bam chon kieu chia o thanh menu");
+                        return;
+                    }
+                    else
+                    {
+                        N = int.Parse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString());
+                        if (kiemtraNumberic(i) == true)
+                        {
+                            //chia gio
+
+                            chiaTheoChieuRong(i, N);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thuoc tinh nay la Nominal.");
+                            return;
+                        }
                     }
                 }
             }
-
+            resetChecked();
+           
+            //xuat list bins ra form2
+            //int Index = dataGridView1.CurrentCell.OwningColumn.Index;
+            
+            
+            
+            
         }
+        private void chiaTheoChieuRong(int cotCanKiem, int sogio)
+        {
+            int i,j,k;
+            double item = 0;
+            double avg= 0;
+            double Min = timMin(cotCanKiem);
+            double Max = timMax(cotCanKiem);
+            double value = (Max - Min)/sogio;
+            List<ClassBin> bins = new List<ClassBin>();
+            ClassBin temp;
+            //Khoi tao cac gio
+            for (i = 0; i < sogio - 1; i++)
+            {
+                temp = new ClassBin(Min + i * value, Min + (i + 1) * value);
+                bins.Add(temp); 
+            }
+            temp = new ClassBin(Min + (sogio - 1) * value, Max);
+            bins.Add(temp);
+            //MessageBox.Show("bins= " + bins.Count.ToString());
+            //tinh gia tri cua gio
+            int vt = 0;
+            for (i = 0; i < bins.Count; i++)
+            {
+                bins[i].IndexItem = new List<int>();
+                for (j = 0; j < dataGridView1.Rows.Count; j++)
+                {
+                    item = double.Parse(dataGridView1.Rows[j].Cells[cotCanKiem].Value.ToString());
+                    if (item >= bins[i].Min && item < bins[i].Max)
+                    {
+                        bins[i].IndexItem.Add(j);
+                        bins[i].Sum += item;
+                        bins[i].Count++;
+                    }
+                    if (i ==bins.Count-1 && item == Max)
+                    {
+                        bins[bins.Count - 1].IndexItem.Add(j);
+                        bins[bins.Count - 1].Sum += item;
+                        bins[bins.Count - 1].Count ++;
+                    }
+                }
+                avg = bins[i].Sum/bins[i].Count;
+                for (k = 0; k <  bins[i].IndexItem.Count; k++)
+                {
+                    dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = avg;
+                }
+                //vt = bins[i].IndexItem.Count;
+                MessageBox.Show("min:" + bins[i].Min.ToString() + "\nMax: " + bins[i].Max.ToString() + "\nCount: " + bins[i].Count.ToString() + "\navg: " + avg.ToString());
+            }
+        }
+
+        //private void SortNumeric(int cotCanKiem)
+        //{
+        //    double a = 0;
+        //    double b = 0;
+        //    DataGridViewRow temp = new DataGridViewRow();
+
+        //    //dataGridView1.Columns[cotCanKiem].ValueType = typeof(float);
+        //    //dataGridView1.Sort(dataGridView1.Columns[cotCanKiem], ListSortDirection.Ascending);
+        //    for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+        //    {
+        //        for (int j = i + 1; j < dataGridView1.Rows.Count; j++)
+        //        {
+        //            a = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+        //            b = float.Parse(dataGridView1.Rows[j].Cells[cotCanKiem].Value.ToString());
+        //            if (a > b)
+        //            {
+        //                MessageBox.Show(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() + " " + dataGridView1.Rows[j].Cells[cotCanKiem].Value.ToString());
+        //                //temp =dataGridView1.Rows[i];
+        //                //dataGridView1.Rows[i].SetValues(dataGridView1.Rows[j]);
+        //                //dataGridView1.Rows[j].SetValues(temp);
+
+
+        //            }
+        //        }
+        //    }
+        //}
+
+        //public void SortNominal(int x)
+        //{
+        //    DataGridViewRow row = new DataGridViewRow();
+        //    for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+        //    {
+        //        for (int j = i + 1; j < dataGridView1.Rows.Count; j++)
+        //        {
+        //            if (dataGridView1.Rows[i].Cells[x].Value.ToString().CompareTo(dataGridView1.Rows[j].Cells[x].Value.ToString()) > 0)
+        //            {
+                       
+        //                //row = dataGridView1.Rows[i];
+        //                //dataGridView1.Rows[i].SetValues = dataGridView1.Rows[j];
+        //                //dataGridView1.Rows[j] = row;
+        //            }
+        //        }
+        //    }
+
+        //}
 
         private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)// Doc file
         {
@@ -197,7 +236,7 @@ namespace TienXyLyDuLieu
             {
                 dataGridView2.Rows.Add(i + 1, false, str.ElementAt(i));
             }
-            
+            MessageBox.Show(dataGridView2.Rows.Count.ToString());
         }
 
         private void DuLieu()// Show dữ liệu vào datagridview
@@ -337,47 +376,34 @@ namespace TienXyLyDuLieu
             return false;
         }
 
-        private float timMin(int cotCanKiem)
+        private double timMin(int cotCanKiem)
         {
-            float flag = float.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
-            if (kiemtraNumberic(cotCanKiem))
+            double flag = double.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
+            double temp = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                float temp = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                if (double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) < flag)
                 {
-                    if (float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) < flag)
-                    {
-                        flag = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                    flag = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
 
-                    }
                 }
             }
-            else
-            {
-                flag = -1;
-            }
+
             MessageBox.Show("min: " + flag.ToString());
             return flag;
         }
 
-        private float timMax(int cotCanKiem)
+        private double timMax(int cotCanKiem)
         {
-            float flag = float.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
-            if (kiemtraNumberic(cotCanKiem))
+            double flag = double.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString());
+            double temp = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                float temp = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                if (double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) > flag)
                 {
-                    if (float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString()) > flag)
-                    {
-                        flag = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                    flag = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
 
-                    }
                 }
-            }
-            else
-            {
-                flag = -1;
             }
             MessageBox.Show("max: " + flag.ToString());
             return flag;
@@ -393,25 +419,90 @@ namespace TienXyLyDuLieu
                 MessageBox.Show("Thuoc tinh nay la Nominal.");
                 return;
             }
-            float v = 0;
-            float kq = 0;
-            float min = timMin(cotCanKiem);
-            float max = timMax(cotCanKiem);
+            double v = 0;
+            double kq = 0;
+            double min = timMin(cotCanKiem);
+            double max = timMax(cotCanKiem);
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() != "?")
+                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() == "?")
                 {
-                    v = float.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
-                    kq = (v - min) * (1 - 0) / (max - min) + 0;
-                    //ghi vao datagridview1
-                    //MessageBox.Show(kq.ToString());
-                    dataGridView1.Rows[i].Cells[cotCanKiem].Value = kq;
-                    //MessageBox.Show(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                    MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
+                    return;
                 }
-
-
+                v = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                kq = (v - min) * (1 - 0) / (max - min) + 0;
+                //ghi vao datagridview1
+                //MessageBox.Show(kq.ToString());
+                dataGridView1.Rows[i].Cells[cotCanKiem].Value = kq;
+                //MessageBox.Show(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
             }
            // MessageBox.Show("minmax: " + (float.Parse(dataGridView1.Rows[2].Cells[cotCanKiem].Value.ToString())).ToString()+" "+ min.ToString() +" "+ (max-min).ToString());
+        }
+
+        private void TongBinhPhuong_Dem(int cotCanKiem,ref double tong,ref int somau)
+        {
+            double mau = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() == "?")
+                {
+                    MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
+                    return;
+                }
+                mau = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                tong += mau * mau;
+                somau++;
+                
+            }
+        }
+
+        private double tinhDoLechChuan(int cotCanKiem)
+        {
+            double tongbp = 0;
+            int somau = 0;
+            double dolechchuan = 0;
+            TongBinhPhuong_Dem(cotCanKiem,ref tongbp,ref somau);
+            dolechchuan = Math.Sqrt(tongbp / somau);
+
+            MessageBox.Show(tongbp.ToString());
+            MessageBox.Show(somau.ToString());
+            MessageBox.Show(dolechchuan.ToString());
+            return dolechchuan;
+        }
+        private void chuanHoaZ_score(int cotCanKiem)
+        {
+            //tinh Tong binh phuong nhung mau != "?"
+            //tinh tong nhung mau != "?"
+            //=> phuong sai
+            //=> do lech chuan = can(phuongsai)
+            //=> chuan hoa Zscore
+            if (kiemtraNumberic(cotCanKiem) != true)
+            {
+                MessageBox.Show("Thuoc tinh nay la Nominal.");
+                return;
+            }
+
+            double dolechchuan = tinhDoLechChuan(cotCanKiem);
+            double mau=0;
+            double trungbinh = TrungBinh(cotCanKiem);
+            double kq = 0;
+            //MessageBox.Show(((double.Parse(dataGridView1.Rows[0].Cells[cotCanKiem].Value.ToString()) - TrungBinh(cotCanKiem))/dolechchuan).ToString());
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString() == "?")
+                {
+                    MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
+                    return;
+                }
+                mau = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                kq = (mau - trungbinh) / dolechchuan;
+                //ghi vao datagridview1                    
+                dataGridView1.Rows[i].Cells[cotCanKiem].Value = kq;
+                
+            }
+            
         }
 
         private void thựcHiệnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -465,24 +556,49 @@ namespace TienXyLyDuLieu
 
         private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
-            e.SortResult = System.String.Compare(
-            e.CellValue1.ToString(), e.CellValue2.ToString());
-
-            // If the cells are equal, sort based on the ID column. 
-            if (e.SortResult == 0 && e.Column.Name != "cl_residual_sugar")
+            if (e.Column.Index == 0)
             {
-                e.SortResult = System.String.Compare(
-                    dataGridView1.Rows[e.RowIndex1].Cells["cl_residual_sugar"].Value.ToString(),
-                    dataGridView1.Rows[e.RowIndex2].Cells["cl_residual_sugar"].Value.ToString());
+                if (double.Parse(e.CellValue1.ToString()) > double.Parse(e.CellValue2.ToString()))
+                {
+                    e.SortResult = 1;
+                }
+                else if (double.Parse(e.CellValue1.ToString()) > double.Parse(e.CellValue2.ToString()))
+                {
+                    e.SortResult = -1;
+                }
+                else
+                {
+                    e.SortResult = 0;
+                }
+                e.Handled = true;
             }
-            e.Handled = true;
+            //e.SortResult = System.String.Compare(
+            //e.CellValue1.ToString(), e.CellValue2.ToString());
+
+            //// If the cells are equal, sort based on the ID column. 
+            //if (e.SortResult == 0 && e.Column.Name != "cl_residual_sugar")
+            //{
+            //    e.SortResult = System.String.Compare(
+            //        dataGridView1.Rows[e.RowIndex1].Cells["cl_residual_sugar"].Value.ToString(),
+            //        dataGridView1.Rows[e.RowIndex2].Cells["cl_residual_sugar"].Value.ToString());
+            //}
+            //e.Handled = true;
         }
 
         private void minmaxToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int Index = dataGridView1.CurrentCell.OwningColumn.Index;
             MessageBox.Show(Index.ToString());
+            //tru cot cuoi cung ko chuan hoa
             chuanHoaMinMax(Index);
+        }
+
+        private void zscoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Index = dataGridView1.CurrentCell.OwningColumn.Index;
+            //MessageBox.Show(Index.ToString());
+            //tru cot cuoi cung ko chuan hoa
+            chuanHoaZ_score(Index);
         }
 
         
