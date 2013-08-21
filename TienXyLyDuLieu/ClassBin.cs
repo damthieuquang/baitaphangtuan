@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TienXyLyDuLieu
 {
-     class ClassBin
+    public class ClassBin
     {
         //min
         private double _min;
