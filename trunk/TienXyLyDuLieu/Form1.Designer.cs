@@ -116,14 +116,14 @@
             // chiaTheoChiềuRộngToolStripMenuItem
             // 
             this.chiaTheoChiềuRộngToolStripMenuItem.Name = "chiaTheoChiềuRộngToolStripMenuItem";
-            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chiaTheoChiềuRộngToolStripMenuItem.Text = "Chiều rộng";
             this.chiaTheoChiềuRộngToolStripMenuItem.Click += new System.EventHandler(this.chiaTheoChiềuRộngToolStripMenuItem_Click);
             // 
             // chiềuSâuToolStripMenuItem
             // 
             this.chiềuSâuToolStripMenuItem.Name = "chiềuSâuToolStripMenuItem";
-            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chiềuSâuToolStripMenuItem.Text = "Chiều sâu";
             // 
             // chuẩnHóaToolStripMenuItem
@@ -159,6 +159,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(209, 27);
