@@ -44,7 +44,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cl_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cl_checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cl_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Bin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
@@ -178,7 +177,6 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cl_stt,
-            this.cl_checked,
             this.cl_Name,
             this.cl_Bin});
             this.dataGridView2.Location = new System.Drawing.Point(12, 27);
@@ -192,13 +190,6 @@
             this.cl_stt.Name = "cl_stt";
             this.cl_stt.ReadOnly = true;
             this.cl_stt.Width = 25;
-            // 
-            // cl_checked
-            // 
-            this.cl_checked.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.cl_checked.HeaderText = "";
-            this.cl_checked.Name = "cl_checked";
-            this.cl_checked.Width = 25;
             // 
             // cl_Name
             // 
@@ -253,7 +244,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ToolStripMenuItem thựcHiệnToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_stt;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn cl_checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Bin;
     }

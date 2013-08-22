@@ -44,10 +44,8 @@ namespace TienXyLyDuLieu
         {
 
             for (int i = 0; i < dataGridView2.Rows.Count; i++)
-            {
-
-                dataGridView2.Rows[i].Cells["cl_checked"].Value = false;
-                dataGridView2.Rows[i].Cells["cl_Bin"].Value = "";
+            {                
+                dataGridView2.Rows[i].Cells["cl_Bin"].Value = null;
             }
         }
 
@@ -70,29 +68,27 @@ namespace TienXyLyDuLieu
             {
                 //khong tinh cot cuoi cung
 
-                if (dataGridView2.Rows[i].Cells[cl_checked.Index].Value.ToString() == "True")
+
+                if (dataGridView2.Rows[i].Cells["cl_Bin"].Value != null)
                 {
-                    if (dataGridView2.Rows[i].Cells["cl_Bin"].Value == null)
+                    int.TryParse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString(),out N);
+                    if (kiemtraNumberic(i) == true)
                     {
-                        MessageBox.Show("Vui long chon thuoc tinh va dien so gio ban muon chia o khung ben trai.\n Sau do bam chon kieu chia o thanh menu");
-                        return;
+                        //chia gio
+
+                        chiaTheoChieuRong(i, N);
                     }
                     else
                     {
-                        N = int.Parse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString());
-                        if (kiemtraNumberic(i) == true)
-                        {
-                            //chia gio
-
-                            chiaTheoChieuRong(i, N);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Thuoc tinh nay la Nominal.");
-                            return;
-                        }
+                        MessageBox.Show("Thuoc tinh nay la Nominal.");
+                        return;
                     }
                 }
+                else
+                {
+                    
+                }
+
             }
             resetChecked();
 
@@ -129,7 +125,7 @@ namespace TienXyLyDuLieu
                 bins[i].IndexItem = new List<int>();
                 for (j = 0; j < dataGridView1.Rows.Count; j++)
                 {
-                    item = double.Parse(dataGridView1.Rows[j].Cells[cotCanKiem].Value.ToString());
+                    double.TryParse(dataGridView1.Rows[j].Cells[cotCanKiem].Value.ToString(),out item);
                     if (item >= bins[i].Min && item < bins[i].Max)
                     {
                         bins[i].IndexItem.Add(j);
@@ -168,7 +164,7 @@ namespace TienXyLyDuLieu
                 {
                     for (k = 0; k < bins[i].IndexItem.Count; k++)
                     {
-                        dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = avg;
+                        dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = string.Format("{0:#,0.###}", avg);
                     }
                 }
             }
@@ -259,7 +255,7 @@ namespace TienXyLyDuLieu
             List<string> str = data.ElementAt(0);
             for (int i = 0; i < str.Count; i++)
             {
-                dataGridView2.Rows.Add(i + 1, false, str.ElementAt(i));
+                dataGridView2.Rows.Add(i + 1, str.ElementAt(i));
             }
         }
 
@@ -406,7 +402,7 @@ namespace TienXyLyDuLieu
             double temp = 0;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                temp = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(), out temp);
                 if (temp < flag)
                 {
                     //flag = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
@@ -424,7 +420,7 @@ namespace TienXyLyDuLieu
             double temp = 0;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                temp = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
+                double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(),out temp);
                 if (temp > flag)
                 {
                     //flag = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
