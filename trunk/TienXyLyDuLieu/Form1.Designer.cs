@@ -124,6 +124,7 @@
             this.chiềuSâuToolStripMenuItem.Name = "chiềuSâuToolStripMenuItem";
             this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chiềuSâuToolStripMenuItem.Text = "Chiều sâu";
+            this.chiềuSâuToolStripMenuItem.Click += new System.EventHandler(this.chiềuSâuToolStripMenuItem_Click);
             // 
             // chuẩnHóaToolStripMenuItem
             // 
