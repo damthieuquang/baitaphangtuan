@@ -115,14 +115,14 @@
             // chiaTheoChiềuRộngToolStripMenuItem
             // 
             this.chiaTheoChiềuRộngToolStripMenuItem.Name = "chiaTheoChiềuRộngToolStripMenuItem";
-            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chiaTheoChiềuRộngToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.chiaTheoChiềuRộngToolStripMenuItem.Text = "Chiều rộng";
             this.chiaTheoChiềuRộngToolStripMenuItem.Click += new System.EventHandler(this.chiaTheoChiềuRộngToolStripMenuItem_Click);
             // 
             // chiềuSâuToolStripMenuItem
             // 
             this.chiềuSâuToolStripMenuItem.Name = "chiềuSâuToolStripMenuItem";
-            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chiềuSâuToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.chiềuSâuToolStripMenuItem.Text = "Chiều sâu";
             this.chiềuSâuToolStripMenuItem.Click += new System.EventHandler(this.chiềuSâuToolStripMenuItem_Click);
             // 
@@ -154,6 +154,7 @@
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
             this.thoátToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.thoátToolStripMenuItem.Text = "Thoát";
+            this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -175,6 +176,7 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cl_stt,
@@ -190,20 +192,17 @@
             this.cl_stt.HeaderText = "STT";
             this.cl_stt.Name = "cl_stt";
             this.cl_stt.ReadOnly = true;
-            this.cl_stt.Width = 25;
             // 
             // cl_Name
             // 
             this.cl_Name.HeaderText = "Name";
             this.cl_Name.Name = "cl_Name";
             this.cl_Name.ReadOnly = true;
-            this.cl_Name.Width = 50;
             // 
             // cl_Bin
             // 
             this.cl_Bin.HeaderText = "Bin";
             this.cl_Bin.Name = "cl_Bin";
-            this.cl_Bin.Width = 50;
             // 
             // Form_XuLyDuLieu
             // 
