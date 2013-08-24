@@ -14,6 +14,7 @@ namespace TienXyLyDuLieu
         public List<ClassBin> bins = new List<ClassBin>();
         public int soGio;
         public int thuocTinh;
+        public string tenThuocTinh;
         public bool res;
 
         public Form_ThongBao()
@@ -23,9 +24,10 @@ namespace TienXyLyDuLieu
 
         private void ThongBao_Load(object sender, EventArgs e)
         {
+            this.Text = this.tenThuocTinh;
             for (int i = 0; i < soGio; i++)
             {
-                dataGridView_ThongBao.Rows.Add(i + 1, bins[i].Min, bins[i].Max, bins[i].Sum / bins[i].Count);
+                dataGridView_ThongBao.Rows.Add(i + 1, bins[i].Min, bins[i].Max, string.Format("{0:#,0.####}",bins[i].Sum / bins[i].Count),bins[i].Count);
             }
         }
 

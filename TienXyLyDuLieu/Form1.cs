@@ -32,6 +32,16 @@ namespace TienXyLyDuLieu
             }
         }
 
+        private void createList(List<double> ls, int cotCanKiem)
+        {
+            double temp;
+            for (int i = 0; i < data.Count; i++)
+            {                
+                double.TryParse( (data.ElementAt(i)).ElementAt(cotCanKiem) , out temp);
+                ls.Add(temp );
+            }
+        }
+
         private void chiềuSâuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuThieu() == true)
@@ -39,9 +49,11 @@ namespace TienXyLyDuLieu
                 MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
                 return;
             }
-
+                        
             int N = 0;
-            int flag=0;
+            int flag=0;            
+            List<double> arrCotCanKiem = new List<double>();
+
             for (int i = 0; i < dataGridView2.RowCount; i++)
             {
                 if (dataGridView2.Rows[i].Cells["cl_Bin"].Value != null)
@@ -50,16 +62,19 @@ namespace TienXyLyDuLieu
                     int.TryParse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString(), out N);
                     if (kiemtraNumberic(i) == true)
                     {
+                        arrCotCanKiem.Clear();
+                        createList(arrCotCanKiem, i);                        
+                        arrCotCanKiem.Sort();
+                                                                            
                         //chia gio
-                        chiaTheoChieuSau(i, N);
+                        chiaTheoChieuSau(arrCotCanKiem, i, N);
                     }
                     else
                     {
                         MessageBox.Show("Thuoc tinh nay la Nominal.");
                         return;
                     }
-                }
-                
+                }              
 
             }
             if(flag == 0 )
@@ -67,46 +82,43 @@ namespace TienXyLyDuLieu
                 MessageBox.Show("Gia tri Bins khong dung. Vui long nhap lai.");
                 return;
             }
-            resetChecked();
 
-            
+            resetChecked();
         }
 
-        private void chiaTheoChieuSau(int cotCanKiem, int sogio)
+        private void chiaTheoChieuSau(List<double> arrCotCanKiem, int cotCanKiem, int sogio)
         {
-            int i, k, temp, value;
+            int i,j, k, temp, value;
             double s = 0;
             double t = 0;
             double avg = 0;
+            string item;
             List<ClassBin> bins = new List<ClassBin>();
             ClassBin x = new ClassBin();
-
-            //SortNumeric(cotCanKiem);
-            //saptang(cotCanKiem);
+                        
             //Khoi tao cac gio
             k = 0;
             temp = 1;
-            value = (int)(dataGridView1.Rows.Count / sogio + 0.5);
+            value = (int)(arrCotCanKiem.Count / sogio + 0.5);
             
-            for (i = 0; i < dataGridView1.Rows.Count-1; i++)
+                       
+            for (i = 0; i < arrCotCanKiem.Count -1 ; i++)
             {
                 
                 if (temp == 1)
-                {
-                    double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(),out s);
-                    x.Min = s;
+                {                    
+                    x.Min = arrCotCanKiem[i];
+                    
                     x.IndexItem = new List<int>();
                 }
-                double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(),out s);
-                x.Sum += s;
+                x.Sum += arrCotCanKiem[i];
                 x.Count++;
                 x.IndexItem.Add(i);
                 
                 if (temp == value)
                 {
-                    double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(),out s);
-                    x.Max = s;
-                    if (dataGridView1.Rows[i + 1].Cells[cotCanKiem].Value.ToString().CompareTo(dataGridView1.Rows[i].Cells[cotCanKiem].Value) != 0)
+                    x.Max = arrCotCanKiem[i];
+                    if(arrCotCanKiem[i+1] != arrCotCanKiem[i])
                     {
                         k++;
                         bins.Add(x);
@@ -120,22 +132,20 @@ namespace TienXyLyDuLieu
                     temp++;
                 }
             }
+            
             if (temp == 0)  //bin moi
             {
-                double.TryParse(dataGridView1.Rows[dataGridView1.RowCount-1].Cells[cotCanKiem].Value.ToString(),out s);
-                double.TryParse(dataGridView1.Rows[dataGridView1.RowCount-1].Cells[cotCanKiem].Value.ToString(),out t);
-                x=new ClassBin(s,t);
+                s = arrCotCanKiem[arrCotCanKiem.Count - 1];
+                x=new ClassBin(s,s);
                 x.IndexItem.Add(i);
-                double.TryParse(dataGridView1.Rows[dataGridView1.RowCount].Cells[cotCanKiem].Value.ToString(), out s);
                 x.Sum += s;
                 x.Count++;
             }
             else    //bin cu, con co the chua them phantu
             {
-                double.TryParse(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[cotCanKiem].Value.ToString(),out s);
+                s = arrCotCanKiem[arrCotCanKiem.Count - 1];
                 x.Max = s;
                 x.IndexItem.Add(i);
-                double.TryParse(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[cotCanKiem].Value.ToString(),out s);
                 x.Sum += s;
                 x.Count++;
             }
@@ -143,20 +153,27 @@ namespace TienXyLyDuLieu
 
             
 
+            //show bins
             Form_ThongBao frm = new Form_ThongBao();
             frm.soGio = bins.Count;
             frm.thuocTinh = cotCanKiem;
+            frm.tenThuocTinh = dataGridView1.Columns[cotCanKiem].Name;//.Columns[i].Name
             frm.bins = bins;
             frm.ShowDialog();
 
             if (frm.res)
-            {
-                for (i = 0; i < bins.Count; i++)
+            {                
+                //khu nhieu cho mau
+                for (i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    avg = bins[i].Sum / bins[i].Count;
-                    for (k = 0; k < bins[i].IndexItem.Count; k++)
+                    for (j = 0; j < bins.Count; j++)
                     {
-                        dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = string.Format("{0:#,0.###}", avg);
+                        double.TryParse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString(), out s);
+                        if (s >= bins[j].Min && s <= bins[j].Max)
+                        {
+                            // s thuoc bins[j]
+                            dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.####}", bins[j].Sum / bins[j].Count);
+                        }
                     }
                 }
             }            
@@ -230,7 +247,7 @@ namespace TienXyLyDuLieu
             }
             temp = new ClassBin(Min + (sogio - 1) * value, Max);
             bins.Add(temp);
-            //MessageBox.Show("bins= " + bins.Count.ToString());
+            
             //tinh gia tri cua gio
             int vt = 0;
             for (i = 0; i < bins.Count; i++)
@@ -267,7 +284,7 @@ namespace TienXyLyDuLieu
                     avg = bins[i].Sum / bins[i].Count;
                     for (k = 0; k < bins[i].IndexItem.Count; k++)
                     {
-                        dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = string.Format("{0:#,0.###}", avg);
+                        dataGridView1.Rows[bins[i].IndexItem[k]].Cells[cotCanKiem].Value = string.Format("{0:#,0.####}", avg);
                     }
                 }
             }
@@ -294,58 +311,7 @@ namespace TienXyLyDuLieu
                 }
             }
         }
-        private void saptang(int cotCanKiem)
-        {
-            /*sort toan bo matran
-             * 
-             * List<string> temp = new List<string>();
-            List<string> b = new List<string>();
-            for (int i = 0; i < data.Count - 1; i++)
-            {
-                for (int j = i + 1; j < data.Count; j++)
-                {
-                    //MessageBox.Show(data.ElementAt(i)[cotCanKiem].ToString());
-                    if (double.Parse(data.ElementAt(i)[cotCanKiem].ToString()) > double.Parse(data.ElementAt(j)[cotCanKiem].ToString()))
-                    {
-                        temp = data.ElementAt(i);
-
-                        data[i] = data.ElementAt(j);
-                        data[j] = temp;
-                    }
-                }
-            }*/
-            
-
-            //sort 1 cot thuoc tinh
-            string temp;
-            
-            for (int i = 0; i < data.Count - 1; i++)
-            {
-                for (int j = i + 1; j < data.Count; j++)
-                {
-                    //MessageBox.Show(data.ElementAt(i)[cotCanKiem].ToString());
-                    List<string> a = data.ElementAt(i);
-                    List<string> b = data.ElementAt(j);
-                    double c, d;
-                    double.TryParse(a.ElementAt(cotCanKiem),out c);
-                    double.TryParse(b.ElementAt(cotCanKiem),out d);
-                    if (c>d)
-                    {
-                        temp = data[i][cotCanKiem];
-                        data[i][cotCanKiem] = data[j][cotCanKiem];
-                        data[j][cotCanKiem] = temp;
-                    }
-                }
-            }
-            for (int i = 0; i < data.Count; i++)
-            {
-                List<string> str = data.ElementAt(i);
-                for (int j = 0; j < tongThuocTinh; j++)
-                {
-                    dataGridView1.Rows[i].Cells[cotCanKiem].Value = str.ElementAt(cotCanKiem);
-                }
-            }
-        }
+        
 
         private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)// Doc file
         {
@@ -486,7 +452,7 @@ namespace TienXyLyDuLieu
                     {
                         if (dataGridView1.Rows[j].Cells[i].Value.ToString() == "?")
                         {
-                            dataGridView1.Rows[j].Cells[i].Value = string.Format("{0:#,0.#}", tb);
+                            dataGridView1.Rows[j].Cells[i].Value = string.Format("{0:#,0.####}", tb);
                         }
                     }
                 }
@@ -582,7 +548,7 @@ namespace TienXyLyDuLieu
                 v = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
                 kq = (v - min) * (1 - 0) / (max - min) + 0;
 
-                dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.###}", kq);                
+                dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.####}", kq);                
             }            
         }
 
@@ -604,10 +570,7 @@ namespace TienXyLyDuLieu
             double dolechchuan = 0;
             TongBinhPhuong_Dem(cotCanKiem, ref tongbp, ref somau);
             dolechchuan = Math.Sqrt(tongbp / somau);
-
-            //MessageBox.Show(tongbp.ToString());
-            //MessageBox.Show(somau.ToString());
-            //MessageBox.Show(dolechchuan.ToString());
+                        
             return dolechchuan;
         }
         private void chuanHoaZ_score(int cotCanKiem)
@@ -633,7 +596,7 @@ namespace TienXyLyDuLieu
                 mau = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
                 kq = (mau - trungbinh) / dolechchuan;
 
-                dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.###}", kq);
+                dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.####}", kq);
             }
         }
 
@@ -766,9 +729,5 @@ namespace TienXyLyDuLieu
         {
             Application.Exit();
         }
-
-        
-
-
     }
 }
