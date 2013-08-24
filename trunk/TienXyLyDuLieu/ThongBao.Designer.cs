@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridView_ThongBao = new System.Windows.Forms.DataGridView();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
             this.cl_bin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_max = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_giatri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThongBao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,11 +50,32 @@
             this.cl_bin,
             this.cl_min,
             this.cl_max,
-            this.cl_giatri});
+            this.cl_giatri,
+            this.test});
             this.dataGridView_ThongBao.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_ThongBao.Name = "dataGridView_ThongBao";
             this.dataGridView_ThongBao.Size = new System.Drawing.Size(283, 302);
             this.dataGridView_ThongBao.TabIndex = 0;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(25, 320);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(98, 23);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "Điền vào bảng";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Location = new System.Drawing.Point(187, 320);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(75, 23);
+            this.btnHuy.TabIndex = 2;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // cl_bin
             // 
@@ -83,25 +105,10 @@
             this.cl_giatri.ReadOnly = true;
             this.cl_giatri.Width = 90;
             // 
-            // btnOK
+            // test
             // 
-            this.btnOK.Location = new System.Drawing.Point(25, 320);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(98, 23);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "Điền vào bảng";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Location = new System.Drawing.Point(187, 320);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(75, 23);
-            this.btnHuy.TabIndex = 2;
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            this.test.HeaderText = "Count";
+            this.test.Name = "test";
             // 
             // Form_ThongBao
             // 
@@ -128,5 +135,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_min;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_max;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_giatri;
+        private System.Windows.Forms.DataGridViewTextBoxColumn test;
     }
 }
