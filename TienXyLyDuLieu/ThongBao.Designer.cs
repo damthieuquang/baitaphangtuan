@@ -54,7 +54,7 @@
             this.test});
             this.dataGridView_ThongBao.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_ThongBao.Name = "dataGridView_ThongBao";
-            this.dataGridView_ThongBao.Size = new System.Drawing.Size(283, 302);
+            this.dataGridView_ThongBao.Size = new System.Drawing.Size(308, 302);
             this.dataGridView_ThongBao.TabIndex = 0;
             // 
             // btnOK
@@ -109,12 +109,13 @@
             // 
             this.test.HeaderText = "Count";
             this.test.Name = "test";
+            this.test.Width = 50;
             // 
             // Form_ThongBao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 355);
+            this.ClientSize = new System.Drawing.Size(332, 355);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.dataGridView_ThongBao);
