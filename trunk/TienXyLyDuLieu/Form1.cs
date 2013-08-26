@@ -535,7 +535,7 @@ namespace TienXyLyDuLieu
             //Chuan hoa ve [0;1]
             if(KiemTraDuLieuThieu()== true)
             {
-                MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
+                MessageBox.Show("Dữ liệu chưa được làm sạch. Vui lòng làm sạch dữ liệu!");
                 return;
             }
             
@@ -546,7 +546,7 @@ namespace TienXyLyDuLieu
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {                
                 v = double.Parse(dataGridView1.Rows[i].Cells[cotCanKiem].Value.ToString());
-                kq = (v - min) * (1 - 0) / (max - min) + 0;
+                kq = ((v - min) * (1 - 0)) / (max - min) + 0;
 
                 dataGridView1.Rows[i].Cells[cotCanKiem].Value = string.Format("{0:#,0.####}", kq);                
             }            
@@ -577,12 +577,12 @@ namespace TienXyLyDuLieu
         {
             if (KiemTraDuLieuThieu() == true)
             {
-                MessageBox.Show("Du lieu chua duoc lam sach. Vui long lam sach du lieu.");
+                MessageBox.Show("Dữ liệu chưa được làm sạch. Vui lòng làm sạch dữ liệu!");
                 return;
             }
             if (kiemtraNumberic(cotCanKiem) != true)
             {
-                MessageBox.Show("Thuoc tinh nay la Nominal.");
+                MessageBox.Show("Thuộc tính này là Nominal.");
                 return;
             }
 
@@ -662,7 +662,7 @@ namespace TienXyLyDuLieu
                     int.TryParse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString(), out N);
                     if(N != 1)
                     {
-                        MessageBox.Show("Gia tri Bins khong dung.Vui long nhap lai");
+                        MessageBox.Show("Giá trị Bins không đúng. Vui lòng nhập lại!");
                         return;
                     }
                     if (kiemtraNumberic(i) == true)
@@ -673,7 +673,7 @@ namespace TienXyLyDuLieu
                     }
                     else
                     {
-                        MessageBox.Show("Thuoc tinh nay la Nominal.");
+                        MessageBox.Show("Thuộc tính này là Nominal.");
                         return;
                     }
                 }
@@ -681,7 +681,7 @@ namespace TienXyLyDuLieu
             }
             if (flag == 0)
             {
-                MessageBox.Show("Nhap 'Gia tri Bins = 1' cho thuoc tinh ban muon chuan hoa.");
+                MessageBox.Show("Nhập 'Giá trị Bins = 1' cho thuộc tính bạn muốn chuẩn hóa.");
 
                 return;
             }
@@ -700,7 +700,7 @@ namespace TienXyLyDuLieu
                     int.TryParse(dataGridView2.Rows[i].Cells["cl_Bin"].Value.ToString(), out N);
                     if (N != 1)
                     {
-                        MessageBox.Show("Gia tri Bins khong dung.Vui long nhap lai");
+                        MessageBox.Show("Giá trị Bins không đúng. Vui lòng nhập lại!");
                         return;
                     }
                     if (kiemtraNumberic(i) == true)
@@ -710,7 +710,7 @@ namespace TienXyLyDuLieu
                     }
                     else
                     {
-                        MessageBox.Show("Thuoc tinh nay la Nominal.");
+                        MessageBox.Show("Thuộc tính này là Nominal.");
                         return;
                     }
                 }
@@ -718,7 +718,7 @@ namespace TienXyLyDuLieu
             }
             if (flag == 0)
             {
-                MessageBox.Show("Nhap 'Gia tri Bins = 1' cho thuoc tinh ban muon chuan hoa.");
+                MessageBox.Show("Nhập 'Giá trị Bins = 1' cho thuộc tính bạn muốn chuẩn hóa.");
 
                 return;
             }
