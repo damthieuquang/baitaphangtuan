@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridView_ThongBao = new System.Windows.Forms.DataGridView();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
             this.cl_bin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_max = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_giatri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.test = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThongBao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,26 +56,6 @@
             this.dataGridView_ThongBao.Name = "dataGridView_ThongBao";
             this.dataGridView_ThongBao.Size = new System.Drawing.Size(308, 302);
             this.dataGridView_ThongBao.TabIndex = 0;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(25, 320);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(98, 23);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "Điền vào bảng";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Location = new System.Drawing.Point(187, 320);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(75, 23);
-            this.btnHuy.TabIndex = 2;
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // cl_bin
             // 
@@ -111,6 +91,26 @@
             this.test.Name = "test";
             this.test.Width = 50;
             // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(25, 320);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(98, 23);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "Điền vào bảng";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Location = new System.Drawing.Point(187, 320);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(75, 23);
+            this.btnHuy.TabIndex = 2;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
             // Form_ThongBao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,7 +120,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.dataGridView_ThongBao);
             this.Name = "Form_ThongBao";
-            this.Text = "ThongBao";
+            this.Text = "Thông Báo";
             this.Load += new System.EventHandler(this.ThongBao_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ThongBao)).EndInit();
             this.ResumeLayout(false);
