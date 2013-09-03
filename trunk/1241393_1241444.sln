@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TienXyLyDuLieu", "TienXyLyDuLieu\TienXyLyDuLieu.csproj", "{6B79E64E-924A-4AA7-849E-1F2F13D03510}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1241393_1241444", "TienXyLyDuLieu\1241393_1241444.csproj", "{6B79E64E-924A-4AA7-849E-1F2F13D03510}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
