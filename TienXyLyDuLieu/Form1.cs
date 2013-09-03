@@ -645,6 +645,7 @@ namespace TienXyLyDuLieu
                     }
                     sw.WriteLine();
                 }
+                sw.Close();
                 MessageBox.Show("File lưu thành công!");
             }
         }
