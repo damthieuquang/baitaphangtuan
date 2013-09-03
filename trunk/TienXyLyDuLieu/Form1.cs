@@ -315,6 +315,13 @@ namespace TienXyLyDuLieu
 
         private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)// Doc file
         {
+            //Làm sạch để load dữ liệu từ lần thứ 2 trở đi
+            dataGridView2.Rows.Clear();            
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            data.Clear();
+
+            //đọc file
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
 
