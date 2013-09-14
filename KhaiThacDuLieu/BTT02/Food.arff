@@ -1,0 +1,22 @@
+@relation Data
+
+@attribute Bread {+}
+@attribute Cheese {+}
+@attribute Chips {+}
+@attribute Fruit {+}
+@attribute Jam {+}
+@attribute Milk {+}
+@attribute Peanuts {+}
+@attribute Soda {+}
+@attribute Steak {+}
+@attribute Yogurt {+}
+
+@data
++,?,?,+,+,+,+,?,?,?
++,?,+,+,+,+,?,+,?,?
++,?,+,?,+,?,?,+,+,?
+?,?,?,+,+,+,+,+,?,?
++,?,+,?,+,+,?,+,?,?
+?,?,+,+,?,+,?,+,?,?
+?,?,?,+,?,+,+,+,?,?
+?,+,?,+,?,?,+,?,?,+
