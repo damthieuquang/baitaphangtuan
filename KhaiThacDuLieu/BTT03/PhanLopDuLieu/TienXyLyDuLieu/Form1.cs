@@ -98,8 +98,8 @@ namespace PhanLop
                 //ton tai thuoc tinh Nominal
                 for (int i = 0; i < data.Count; i++)
                 {
-                    KhoangCachManhattan(i, U);
-                    dataGridView2.Rows.Add(i + 1, "D"+(i+1), listKhoangCach.ElementAt(listKhoangCach.Count-1).Distance);
+                    MessageBox.Show("Tồn tại dữ liệu kiểu Nominal, vui lòng thực hiện tiền xử lý dữ liệu.");
+                    return;
                 }
             }
             else
@@ -197,37 +197,7 @@ namespace PhanLop
             listKhoangCach.Add(d);
         }
 
-        private void KhoangCachManhattan(int vt, List<string> U)
-        {
-            List<string> arr = data.ElementAt(vt);
-            Item d = new Item();
-            double a,b;
-
-            d.Index = vt;
-            d.Distance = 0;
-
-            for (int i = 0; i < arr.Count; i++)
-            {
-                if (double.TryParse(arr.ElementAt(i), out a))
-                {
-                    double.TryParse(U.ElementAt(i), out b);
-                    d.Distance += Math.Abs(a - b);
-                }
-                else
-                {
-                    if (arr.ElementAt(i).CompareTo(U.ElementAt(i)) != 0)
-                    {
-                        d.Distance += 1;
-                    }
-                }
-                
-                //MessageBox.Show(d.Distance.ToString());
-                //double.TryParse((data.ElementAt(i)).ElementAt(cotCanKiem), out temp);
-                //ls.Add(temp);
-            }
-            listKhoangCach.Add(d);
-        }
-
+        
         private void Sort()
         {
             Item temp = new Item();
@@ -257,13 +227,12 @@ namespace PhanLop
             for (int i = 0; i < data.Count; i++)
             {
                 dataGridView2.Rows.Add(i + 1, "D" + (listKhoangCach.ElementAt(i).Index +1), string.Format("{0:#,0.####}", listKhoangCach.ElementAt(i).Distance));
-                //nhap
-                //MessageBox.Show(listKhoangCach.ElementAt(i).AttributeTOP);
+                
             }
 
             //lay k-nearist neighbor
             string thuoctinh = TanXuatMax(K);
-            MessageBox.Show(thuoctinh);
+            
 
             //gan thuoc tinh phan lop cho mau U
             U.RemoveAt(U.Count - 1);
