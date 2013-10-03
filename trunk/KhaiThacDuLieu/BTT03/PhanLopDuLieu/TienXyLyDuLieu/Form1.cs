@@ -36,17 +36,13 @@ namespace PhanLop
         {
             InitializeComponent();
 
-        }
-        
-       
-
-       
+        }               
         
         private void chọnDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)// Doc file
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "(*.csv)|*.csv|(*.arff)|*.arff";
-
+            dlg.Filter = "(*.csv)|*.csv";
+            
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 string path = dlg.FileName;
