@@ -36,12 +36,9 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton_classes_to_cluster = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txt_NumK = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -116,31 +113,12 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.txt_NumK);
             this.groupBox4.Location = new System.Drawing.Point(12, 131);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(276, 364);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
-            // 
-            // txt_NumK
-            // 
-            this.txt_NumK.Location = new System.Drawing.Point(64, 22);
-            this.txt_NumK.Name = "txt_NumK";
-            this.txt_NumK.Size = new System.Drawing.Size(100, 20);
-            this.txt_NumK.TabIndex = 0;
-            this.txt_NumK.Text = "2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "K";
             // 
             // Form1
             // 
@@ -158,8 +136,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -174,8 +150,6 @@
         private System.Windows.Forms.RadioButton radioButton_classes_to_cluster;
         private System.Windows.Forms.Button button_Start;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_NumK;
     }
 }
 
