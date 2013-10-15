@@ -45,6 +45,9 @@ namespace BaiTap04
                     str = reader.ReadLine();
                 } while (str.IndexOf('@') != 0);//Kiem tra xem dong do co chua ki tu @
 
+
+                String[] title = null;
+                String temp = null;
                 do
                 {
                     str = reader.ReadLine();
@@ -52,11 +55,15 @@ namespace BaiTap04
                     if (str.Contains('@') && str.Contains(' '))
                     {
                         //Thuc hien cat chuoi
-                        String[] title = str.Split(' ');
+                        title = str.Split(' ');
                         //Dua tieu de vao dataset
                         ds.Tables["data"].Columns.Add(title[1]);
+
+                        temp = title[2];
                     }
                 } while (str.Length == 0 || str.Contains(' '));
+
+                String[] distinct = temp.Split(",".ToCharArray());
 
                 //Doc den het file
                 while (!reader.EndOfStream)
@@ -69,10 +76,8 @@ namespace BaiTap04
                     }
                 }
                 reader.Close();
-                //DataRow dr = ds.Tables["data"].Rows[0];
-
-                //textBox_ClusterOuput.Text = dr[0].ToString();
-                //dataGridView1.DataSource = ds.Tables["data"].DefaultView;
+                //Lay so lop cua du lieu
+                k = distinct.Length;                
             }
         }
         /************************************************************************/
@@ -80,7 +85,8 @@ namespace BaiTap04
         /************************************************************************/
         private double DistanceMinkowski(DataRow dr1, DataRow dr2, int q)
         {
-            double result = -1;
+            double result = 0;
+            
             //Lay so cot
             int numcol = ds.Tables["data"].Columns.Count;
 
@@ -116,28 +122,52 @@ namespace BaiTap04
         /* Phan lop du lieu                                                                     */
         /************************************************************************/
         private void Cluster()
-        {
-            //Lay so cum
-            k = int.Parse(txt_NumK.ToString());
-
+        {            
             //Lay gia tri ngau nhien
-            DataRow k1, k2, k3;
-            k1 = ds.Tables["data"].Rows[0];
-            k2 = ds.Tables["data"].Rows[1];
-            k3 = ds.Tables["data"].Rows[2];
-
-            //Duyet het tung dong trong du lieu
-            foreach (DataRow datarow in ds.Tables["data"].Rows)
+            List<Cluster> listCluster = new List<Cluster>();
+            for (int i = 0; i < k; i++)
             {
-                double rs1, rs2, rs3;
-                //Tinh khoang cach
-                rs1 = DistanceMinkowski(k1, datarow, 2);
-                rs2 = DistanceMinkowski(k2, datarow, 2);
-                rs3 = DistanceMinkowski(k3, datarow, 2);
+                Cluster dr = new Cluster();
 
-                
+                dr.Point = ds.Tables["data"].Rows[i];
+
+                listCluster.Add(dr);
             }
-        }
+            do
+            {
+                //Duyet het tung dong trong du lieu
+                for(int j=0;j<ds.Tables["data"].Rows.Count; j++)
+                {
+                    DataRow datarow = ds.Tables["data"].Rows[j];
+                    //Tinh khoang cach                    
+                    int min = 0;// DistanceMinkowski(listCluster[0].Point, datarow, 2);
+                    for (int i = 0; i < listCluster.Count; i++)
+                    {
+                        double rs = DistanceMinkowski(listCluster[i].Point, datarow, 2);
+                        if (rs < DistanceMinkowski(listCluster[min].Point, datarow, 2))
+                            min = i;
+                    }
+                    for (int m = 0; m < ds.Tables["data"].Columns.Count;m++ )
+                    {
+                        
+                        //listCluster[min].Mean[m]= datarow[m];
+                        
+                        MessageBox.Show(datarow[0].ToString()+" "+ datarow[1].ToString());
+                    }
+                    listCluster[min].Flag = new List<int>();
+                    listCluster[min].Flag.Add(j);
+                       
+                    //foreach (Cluster dtr in listCluster)
+                    //{
+                    //    double rs = DistanceMinkowski(dtr.Point, datarow, 2);
+                    //    result.Add(rs);                        
+                    //}
+                    //dua diem gan tam thu k ve cum do
+                }
+                //Tinh trung binh moi cho cac cum
+            }while(true);            
+
+        }       
 
         /************************************************************************/
         /* Thuc hien tinh K-Means                                                                     */
@@ -151,6 +181,7 @@ namespace BaiTap04
                 return;
             }
             
+            Cluster();
         }
     }
 }
