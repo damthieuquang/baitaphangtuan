@@ -1,3 +1,0 @@
-I am test SVN in this folder
-hello world
-aaaa
